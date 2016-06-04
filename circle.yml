@@ -1,0 +1,34 @@
+machine:
+  timezone: Asia/Tokyo
+  node:
+    version: 6.2.0
+
+dependencies:
+  post:
+    - npm run build
+
+deployment:
+  publish:
+    branch: master
+    commands:
+      - git config --global user.name 'CircleCI'
+      - git config --global user.email 'circleci@cureapp.jp'
+      - mv dist /tmp/release
+      - git checkout -t origin/gh-pages
+      - git clean -dxf
+      - git rm $(git ls-files)
+      - cp -r /tmp/release/* .
+      - |
+        cat <<EOF > ./circle.yml
+        general:
+          branches:
+            ignore:
+              - gh-pages
+        EOF
+      - git add -A
+      - git commit -m "release at $(date +'%Y.%m.%d %H:%M:%S')" --allow-empty
+      - git push origin gh-pages
+
+test:
+  override:
+    - exit 0
