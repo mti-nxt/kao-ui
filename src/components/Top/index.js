@@ -14,8 +14,6 @@ export default class Top extends Component {
         <HeaderContainer />
         <section className="section">
           <div className="container">
-            {/*<h2 className="subtitle">TOP</h2>
-            <hr/>*/}
             <article className="message is-warning">
               <div className="message-header">
                 使い方
