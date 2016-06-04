@@ -7,17 +7,21 @@ export default class Header extends Component {
 
   render() {
     return(
-      <section className="hero is-warning is-bold">
-        <div className="hero-header">
-          <header className="header">
+      <section className="hero is-warning">
+        <div className="hero-head">
+          <header className="nav">
             <div className="container">
-              <div className="header-left">
-                <div className="header-item">
+              <div className="nav-left">
+                <a href="/" className="nav-item">
                   <p className="subtitle is-4">KAO</p>
-                </div>
+                </a>
               </div>
-              <div className="header-right">
-                {/*<a href="" className="header-item">TOP</a>*/}
+              <div className="nav-right">
+                <a href="https://github.com/mti-nxt/" className="nav-item">
+                  <span className="icon">
+                    <i className="fa fa-github"></i>
+                  </span>
+                </a>
               </div>
             </div>
           </header>
