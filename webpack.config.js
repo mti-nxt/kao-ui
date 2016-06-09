@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const rucksack = require("rucksack-css");
+const ConfigPlugin = require("webpack-config-plugin");
 
 module.exports = {
   context: path.join(__dirname, "./src"),
@@ -52,7 +53,8 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": { NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development") }
     }),
-    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
+    new ConfigPlugin({ dir: path.join(__dirname, "./config")})
   ],
   devServer: {
     contentBase: "./src",
