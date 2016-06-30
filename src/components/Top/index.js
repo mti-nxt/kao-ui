@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import style from "./style.css";
 
 import HeaderContainer from "../../containers/header";
+import Rate from "./rate";
 
 export default class Top extends Component {
   constructor() {
@@ -30,37 +31,12 @@ export default class Top extends Component {
                 </figure>
               </div>
               <div className="column is-6">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>タイプ</th>
-                      <th>度合い</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>ジャニーズ</td>
-                      <td>★★★★★</td>
-                    </tr>
-                    <tr>
-                      <td>ホスト</td>
-                      <td>★★★☆☆</td>
-                    </tr>
-                    <tr>
-                      <td>よしもと</td>
-                      <td>☆☆☆☆☆</td>
-                    </tr>
-                    <tr>
-                      <td>あくやく</td>
-                      <td>☆☆☆☆☆</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <Rate {...this.props} />
               </div>
             </div>
             <div className="columns">
               <div className="is-half is-offset-one-quarter">
-                <a href="" className="button">Check</a>
+                <a className="button" onClick={() => this.props.dispatch("postFace", "")}>Check</a>
               </div>
             </div>
           </div>

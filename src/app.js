@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom";
 import React from "react";
 
-import SampleContainer from "./containers/sample";
+import TopContainer from "./containers/top";
 
 ReactDOM.render(
-  <SampleContainer />,
+  <TopContainer />,
   document.getElementById("app")
 );
