@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import style from "./style.css";
-import "../../../node_modules/react-cropper/node_modules/cropperjs/dist/cropper.css";
+import "../../../node_modules/cropperjs/dist/cropper.css";
 
 import HeaderContainer from "../../containers/header";
 import Rate from "./rate";
-import Cropper from "../../../node_modules/react-cropper";
+import Cropper from "react-cropper";
 
 const src = 'http://i1.wp.com/solife-a.com/wp-content/uploads/2015/11/2-e1448672737694.jpg';
 
