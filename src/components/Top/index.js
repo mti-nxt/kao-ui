@@ -6,19 +6,14 @@ import HeaderContainer from "../../containers/header";
 import Rate from "./rate";
 import Cropper from "react-cropper";
 
-const src = "http://i1.wp.com/solife-a.com/wp-content/uploads/2015/11/2-e1448672737694.jpg";
-
 export default class Top extends Component {
   constructor() {
     super();
 
     this.state = {
-      src,
       cropResult: null,
     };
     this._cropImage = this._cropImage.bind(this);
-    this._onChange = this._onChange.bind(this);
-    this._useDefaultImage = this._useDefaultImage.bind(this);
 
   }
 
@@ -29,25 +24,6 @@ export default class Top extends Component {
     this.setState({
       cropResult: this.refs.cropper.getCroppedCanvas().toDataURL(),
     });
-  }
-
-  _onChange(e) {
-    e.preventDefault();
-    let files;
-    if (e.dataTransfer) {
-      files = e.dataTransfer.files;
-    } else if (e.target) {
-      files = e.target.files;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.setState({ src: reader.result });
-    };
-    reader.readAsDataURL(files[0]);
-  }
-
-  _useDefaultImage() {
-    this.setState({ src });
   }
 
   render() {
@@ -71,8 +47,8 @@ export default class Top extends Component {
               <div className="column is-6">
                 <div style={{width: "100%"}}>
                   <div style={{ width: "100%" }}>
-                    <input type="file" onChange={this._onChange} />
-                    <a className="button" onClick={this._useDefaultImage}>むらい</a>
+                    <input type="file" onChange={(e) => this.props.dispatch("uploadImage", e)} />
+                  <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>むらい</a>
                     <br />
                     <br />
                     <Cropper
@@ -80,7 +56,7 @@ export default class Top extends Component {
                     aspectRatio={1 / 1}
                     preview=".img-preview"
                     guides={false}
-                    src={this.state.src}
+                    src={this.props.src}
                     ref="cropper"
                     crop={this._crop}
                     zoomable={false}
