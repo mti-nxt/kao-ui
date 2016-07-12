@@ -58,16 +58,30 @@ export default class TopContainer extends Container {
     this.setState({src: DEFAULT_SRC});
   }
 
-  postFace(base64Image) {
-    request.post(`http://${config.api.domain}:${config.api.port}/api/face`)
-    .end((err, res) => {
-      this.setState({
-        hostRate: res.body.host_rate,
-        jhonnysRate: res.body.jhonnys_rate,
-        villainRate: res.body.villain_rate,
-        yoshimotoRate: res.body.yoshimoto_rate,
-      });
-    });
+  imageToBase64(img, mimeType) {
+    const canvas = document.createElement("canvas");
+    canvas.width  = img.width;
+    canvas.height = img.height;
+    // Draw Image
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    // To Base64
+    return canvas.toDataURL(mimeType);
+  }
+
+  postFace() {
+    const img = document.getElementById("cropImage");
+    const base64 = this.imageToBase64(img, "image/jpeg");
+    request.post(`https://${config.api.domain}:${config.api.port}/api/face`)
+           .send({binary: base64})
+           .end((err, res) => {
+             this.setState({
+               hostRate: res.body.host_rate,
+               jhonnysRate: res.body.jhonnys_rate,
+               villainRate: res.body.villain_rate,
+               yoshimotoRate: res.body.yoshimoto_rate,
+             });
+           });
   }
 
   render() {

@@ -54,7 +54,7 @@ export default class Top extends Component {
                           切断
                         </a>
                       </h1>
-                      <img style={{ width: "100%" }} src={this.props.cropResult} />
+                      <img id="cropImage" style={{ width: "100%" }} src={this.props.cropResult} />
                     </div>
                   </div>
                   <br style={{ clear: "both" }} />
@@ -66,7 +66,7 @@ export default class Top extends Component {
             </div>
             <div className="columns">
               <div className="is-half is-offset-one-quarter">
-                <a className="button" onClick={() => this.props.dispatch("postFace", "")}>Check</a>
+                <a className="button" onClick={() => this.props.dispatch("postFace")}>Check</a>
               </div>
             </div>
           </div>
