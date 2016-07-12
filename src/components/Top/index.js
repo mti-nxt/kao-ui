@@ -9,21 +9,6 @@ import Cropper from "react-cropper";
 export default class Top extends Component {
   constructor() {
     super();
-
-    this.state = {
-      cropResult: null,
-    };
-    this._cropImage = this._cropImage.bind(this);
-
-  }
-
-  _cropImage() {
-    if (typeof this.refs.cropper.getCroppedCanvas() === "undefined") {
-      return;
-    }
-    this.setState({
-      cropResult: this.refs.cropper.getCroppedCanvas().toDataURL(),
-    });
   }
 
   render() {
@@ -65,11 +50,11 @@ export default class Top extends Component {
                   <div>
                     <div className="box" style={{ width: "100%" }}>
                       <h1 style={{ display: "inline-block" }}>
-                        <a className="button" onClick={ this._cropImage } style={{ float: "right" }}>
+                        <a className="button" onClick={() => this.props.dispatch("cropImage", this.refs.cropper) } style={{ float: "right" }}>
                           切断
                         </a>
                       </h1>
-                      <img style={{ width: "100%" }} src={this.state.cropResult} />
+                      <img style={{ width: "100%" }} src={this.props.cropResult} />
                     </div>
                   </div>
                   <br style={{ clear: "both" }} />

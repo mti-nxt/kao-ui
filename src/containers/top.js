@@ -28,8 +28,14 @@ export default class TopContainer extends Container {
     });
   }
 
-  cropImage() {
+  cropImage(cropper) {
+    if (typeof cropper.getCroppedCanvas() === "undefined") {
+      return;
+    }
 
+    this.setState({
+      cropResult: cropper.getCroppedCanvas().toDataURL(),
+    });
   }
 
   uploadImage(e) {
