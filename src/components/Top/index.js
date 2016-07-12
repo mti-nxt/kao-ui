@@ -33,19 +33,19 @@ export default class Top extends Component {
                 <div style={{width: "100%"}}>
                   <div style={{ width: "100%" }}>
                     <input type="file" onChange={(e) => this.props.dispatch("uploadImage", e)} />
-                  <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>むらい</a>
+                    <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>むらい</a>
                     <br />
                     <br />
                     <Cropper
-                    style={{ height: 400, width: "100%" }}
-                    aspectRatio={1 / 1}
-                    preview=".img-preview"
-                    guides={false}
-                    src={this.props.src}
-                    ref="cropper"
-                    crop={this._crop}
-                    zoomable={false}
-                    />
+                      style={{ height: 400, width: "100%" }}
+                      aspectRatio={1 / 1}
+                      preview=".img-preview"
+                      guides={false}
+                      src={this.props.src}
+                      ref="cropper"
+                      crop={this._crop}
+                      zoomable={false}
+                      />
                   </div>
                   <div>
                     <div className="box" style={{ width: "100%" }}>
