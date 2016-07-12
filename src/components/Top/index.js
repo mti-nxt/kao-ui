@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import style from "./style.css";
+import "../../../node_modules/cropperjs/dist/cropper.css";
 
 import HeaderContainer from "../../containers/header";
 import Rate from "./rate";
+import Cropper from "react-cropper";
 
 export default class Top extends Component {
   constructor() {
@@ -15,6 +17,7 @@ export default class Top extends Component {
         <HeaderContainer />
         <section className="section">
           <div className="container">
+
             <article className="message is-warning">
               <div className="message-header">
                 使い方
@@ -24,11 +27,38 @@ export default class Top extends Component {
               </div>
             </article>
             <hr/>
+
             <div className="columns">
               <div className="column is-6">
-                <figure className="image is-1by1">
-                  <img src="http://placehold.it/300x225" alt="" />
-                </figure>
+                <div style={{width: "100%"}}>
+                  <div style={{ width: "100%" }}>
+                    <input type="file" onChange={(e) => this.props.dispatch("uploadImage", e)} />
+                  <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>むらい</a>
+                    <br />
+                    <br />
+                    <Cropper
+                    style={{ height: 400, width: "100%" }}
+                    aspectRatio={1 / 1}
+                    preview=".img-preview"
+                    guides={false}
+                    src={this.props.src}
+                    ref="cropper"
+                    crop={this._crop}
+                    zoomable={false}
+                    />
+                  </div>
+                  <div>
+                    <div className="box" style={{ width: "100%" }}>
+                      <h1 style={{ display: "inline-block" }}>
+                        <a className="button" onClick={() => this.props.dispatch("cropImage", this.refs.cropper) } style={{ float: "right" }}>
+                          切断
+                        </a>
+                      </h1>
+                      <img style={{ width: "100%" }} src={this.props.cropResult} />
+                    </div>
+                  </div>
+                  <br style={{ clear: "both" }} />
+                </div>
               </div>
               <div className="column is-6">
                 <Rate {...this.props} />
