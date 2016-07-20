@@ -33,19 +33,19 @@ export default class Top extends Component {
                 <div style={{width: "100%"}}>
                   <div style={{ width: "100%" }}>
                     <input type="file" onChange={(e) => this.props.dispatch("uploadImage", e)} />
-                  <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>むらい</a>
+                    <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>むらい</a>
                     <br />
                     <br />
                     <Cropper
-                    style={{ height: 400, width: "100%" }}
-                    aspectRatio={1 / 1}
-                    preview=".img-preview"
-                    guides={false}
-                    src={this.props.src}
-                    ref="cropper"
-                    crop={this._crop}
-                    zoomable={false}
-                    />
+                      style={{ height: 400, width: "100%" }}
+                      aspectRatio={1 / 1}
+                      preview=".img-preview"
+                      guides={false}
+                      src={this.props.src}
+                      ref="cropper"
+                      crop={this._crop}
+                      zoomable={false}
+                      />
                   </div>
                   <div>
                     <div className="box" style={{ width: "100%" }}>
@@ -54,7 +54,7 @@ export default class Top extends Component {
                           切断
                         </a>
                       </h1>
-                      <img style={{ width: "100%" }} src={this.props.cropResult} />
+                      <img id="cropImage" style={{ width: "100%" }} src={this.props.cropResult} />
                     </div>
                   </div>
                   <br style={{ clear: "both" }} />
@@ -66,7 +66,7 @@ export default class Top extends Component {
             </div>
             <div className="columns">
               <div className="is-half is-offset-one-quarter">
-                <a className="button" onClick={() => this.props.dispatch("postFace", "")}>Check</a>
+                <a className="button" onClick={() => this.props.dispatch("postFace")}>Check</a>
               </div>
             </div>
           </div>
