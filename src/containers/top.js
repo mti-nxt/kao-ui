@@ -73,7 +73,7 @@ export default class TopContainer extends Container {
     const img = document.getElementById("cropImage");
     const base64 = this.imageToBase64(img, "image/jpeg");
     request.post(`http://${config.api.domain}:${config.api.port}/api/face`)
-           .send({binary: base64})
+           .send(base64)
            .end((err, res) => {
              this.setState({
                hostRate: res.body.host_rate,
