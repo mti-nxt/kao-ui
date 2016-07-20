@@ -16239,11 +16239,25 @@ webpackJsonp([1],[
 	      this.setState({ src: DEFAULT_SRC });
 	    }
 	  }, {
+	    key: "imageToBase64",
+	    value: function imageToBase64(img, mimeType) {
+	      var canvas = document.createElement("canvas");
+	      canvas.width = img.width;
+	      canvas.height = img.height;
+	      // Draw Image
+	      var ctx = canvas.getContext("2d");
+	      ctx.drawImage(img, 0, 0);
+	      // To Base64
+	      return canvas.toDataURL(mimeType);
+	    }
+	  }, {
 	    key: "postFace",
-	    value: function postFace(base64Image) {
+	    value: function postFace() {
 	      var _this3 = this;
 
-	      _superagent2.default.post("http://" + _config2.default.api.domain + ":" + _config2.default.api.port + "/api/face").end(function (err, res) {
+	      var img = document.getElementById("cropImage");
+	      var base64 = this.imageToBase64(img, "image/jpeg");
+	      _superagent2.default.post("https://" + _config2.default.api.domain + ":" + _config2.default.api.port + "/api/face").send({ binary: base64 }).end(function (err, res) {
 	        _this3.setState({
 	          hostRate: res.body.host_rate,
 	          jhonnysRate: res.body.jhonnys_rate,
@@ -18380,7 +18394,7 @@ webpackJsonp([1],[
 	                          "切断"
 	                        )
 	                      ),
-	                      _react2.default.createElement("img", { style: { width: "100%" }, src: this.props.cropResult })
+	                      _react2.default.createElement("img", { id: "cropImage", style: { width: "100%" }, src: this.props.cropResult })
 	                    )
 	                  ),
 	                  _react2.default.createElement("br", { style: { clear: "both" } })
@@ -18401,7 +18415,7 @@ webpackJsonp([1],[
 	                _react2.default.createElement(
 	                  "a",
 	                  { className: "button", onClick: function onClick() {
-	                      return _this2.props.dispatch("postFace", "");
+	                      return _this2.props.dispatch("postFace");
 	                    } },
 	                  "Check"
 	                )
