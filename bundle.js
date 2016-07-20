@@ -16257,7 +16257,7 @@ webpackJsonp([1],[
 
 	      var img = document.getElementById("cropImage");
 	      var base64 = this.imageToBase64(img, "image/jpeg");
-	      _superagent2.default.post("https://" + _config2.default.api.domain + ":" + _config2.default.api.port + "/api/face").send({ binary: base64 }).end(function (err, res) {
+	      _superagent2.default.post("http://" + _config2.default.api.domain + ":" + _config2.default.api.port + "/api/face").send({ binary: base64 }).end(function (err, res) {
 	        _this3.setState({
 	          hostRate: res.body.host_rate,
 	          jhonnysRate: res.body.jhonnys_rate,
