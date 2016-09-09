@@ -39,6 +39,10 @@ module.exports = {
         exclude: /node_modules/,
         loaders: ["react-hot", "babel-loader"],
       },
+      {
+        test: /\.(jpeg|jpg|png)$/,
+        loader: "url-loader",
+      },
     ]
   },
   resolve: {
