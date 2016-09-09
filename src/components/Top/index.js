@@ -18,7 +18,7 @@ export default class Top extends Component {
         <section className="section">
           <div className="container">
 
-            <article className="message is-warning">
+            {/* <article className="message is-warning">
               <div className="message-header">
                 使い方
               </div>
@@ -26,14 +26,14 @@ export default class Top extends Component {
                 ここに使い方について書く
               </div>
             </article>
-            <hr/>
+            <hr/> */}
 
             <div className="columns">
               <div className="column is-6">
                 <div style={{width: "100%"}}>
                   <div style={{ width: "100%" }}>
                     <input type="file" onChange={(e) => this.props.dispatch("uploadImage", e)} />
-                    <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>むらい</a>
+                    <a className="button" onClick={() => this.props.dispatch("setDefaultImage")}>初期画像に戻す</a>
                     <br />
                     <br />
                     <Cropper
@@ -51,7 +51,7 @@ export default class Top extends Component {
                     <div className="box" style={{ width: "100%" }}>
                       <h1 style={{ display: "inline-block" }}>
                         <a className="button" onClick={() => this.props.dispatch("cropImage", this.refs.cropper) } style={{ float: "right" }}>
-                          切断
+                          切り取る
                         </a>
                       </h1>
                       <img id="cropImage" style={{ width: "100%" }} src={this.props.cropResult} />
@@ -66,7 +66,7 @@ export default class Top extends Component {
             </div>
             <div className="columns">
               <div className="is-half is-offset-one-quarter">
-                <a className="button" onClick={() => this.props.dispatch("postFace")}>Check</a>
+                <a className="button" onClick={() => this.props.dispatch("postFace")}>判定する</a>
               </div>
             </div>
           </div>

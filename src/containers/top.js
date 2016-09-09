@@ -3,8 +3,9 @@ import Container from "react-micro-container";
 import request from "superagent";
 import config from "config";
 import Top from "../components/Top";
+import yukichi from "./yukichi.jpeg";
 
-const DEFAULT_SRC = "http://i1.wp.com/solife-a.com/wp-content/uploads/2015/11/2-e1448672737694.jpg";
+const DEFAULT_SRC = yukichi;
 
 
 export default class TopContainer extends Container {
